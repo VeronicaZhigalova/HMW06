@@ -123,14 +123,13 @@ public class IDCodeValidator {
             int day = personalCode.dayNumber;
             int fullYear = getFullYear(genderNum, year);
             String gender = String.valueOf(getGender(genderNum));
-            convertIntToString(day);
-            convertIntToString(month);
             return String.format("This is a " + gender + "born on " + convertIntToString(day), convertIntToString(month), fullYear);
         } else {
             return "ID is not correct";
 
         }
     }
+
 
 
 

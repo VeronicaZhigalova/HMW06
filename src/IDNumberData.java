@@ -27,12 +27,12 @@ public class IDNumberData {
     }
 
     public static IDNumberData getInformationFromIdCode(String idCode) {
-        int genderNumber = Integer.parseInt(idCode.substring(1, 1));
-        int year = Integer.parseInt(idCode.substring(2, 3));
-        int month = Integer.parseInt(idCode.substring(7, 5));
-        int day = Integer.parseInt(idCode.substring(9, 7));
-        int serialNumber = Integer.parseInt(idCode.substring(10, 0));
-        int controlNumber = Integer.parseInt(idCode.substring(8, 11));
+        int genderNumber = Integer.parseInt(idCode.substring(0, 1));
+        int year = Integer.parseInt(idCode.substring(1,3));
+        int month = Integer.parseInt(idCode.substring(3, 5));
+        int day = Integer.parseInt(idCode.substring(5, 7));
+        int serialNumber = Integer.parseInt(idCode.substring(7,10));
+        int controlNumber = Integer.parseInt(idCode.substring(10, 11));
         return new IDNumberData(genderNumber, year, month, day, serialNumber, controlNumber);
     }
 }
