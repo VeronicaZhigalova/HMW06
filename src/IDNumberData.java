@@ -35,4 +35,5 @@ public class IDNumberData {
         int controlNumber = Integer.parseInt(idCode.substring(10, 11));
         return new IDNumberData(genderNumber, year, month, day, serialNumber, controlNumber);
     }
+
 }
