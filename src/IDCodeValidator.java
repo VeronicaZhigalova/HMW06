@@ -79,31 +79,31 @@ public class IDCodeValidator {
 
 
     public static boolean checkControlNumber(String idCode) {
-        int result = 0;
+        int result;
         List<Integer> a = new ArrayList<>();
-        a.add(Integer.valueOf(idCode));
         for (int i = 0; i < idCode.length(); i++) {
             String n = String.valueOf(idCode.charAt(i));
             a.add(Integer.parseInt(n));
-
+        }
 
             List<Integer> x = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 1);
-            result = result + (a.get(i) * x.get(i));
+            result = getSum(a,x);
 
-            int leftover = result % 11;
-
+            if ( result % 11 == 10){
 
             List<Integer> k = List.of(3, 4, 5, 6, 7, 8, 9, 1, 2, 3);
 
-            result = result + (a.get(i) * k.get(i));
+            result = getSum(a,k);
 
         }
         int leftover = result % 11;
         if ( leftover == a.get(a.size()-1)){
-            System.out.printf("Control number is correct", leftover,a.get(a.size()-1));
+            System.out.printf("Control number is correct",
+                    leftover,a.get(a.size()-1));
             return true;
         } else{
-            System.out.printf("Control number is not correct", leftover,a.get(a.size()-1));
+            System.out.printf("Control number is not correct",
+                    leftover,a.get(a.size()-1));
             return false;
 
         }
@@ -120,7 +120,11 @@ public class IDCodeValidator {
             int day = personalCode.dayNumber;
             int fullYear = getFullYear(genderNum, year);
             String gender = String.valueOf(getGender(genderNum));
-            return String.format("This is a %s born on %d %d %d", gender, day, month, fullYear);
+            return String.format("This is a %s born on %d %d %d",
+                    gender,
+                    day,
+                    month,
+                    fullYear);
         } else {
             return "ID is not correct";
 
@@ -162,5 +166,13 @@ public class IDCodeValidator {
         } else {
             return false;
         }
+    }
+
+    public static int getSum(List<Integer> a, List<Integer> x) {
+        int result = 0;
+        for (int i = 0; i < a.size() - 1; i++) {
+            result = result + (a.get(i) * x.get(i));
+        }
+        return result;
     }
 }
