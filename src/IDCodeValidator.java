@@ -10,8 +10,8 @@ public class IDCodeValidator {
                 && isGenderNumberCorrect(personalCode.genderNumber)
                 && isDayNumberCorrect(personalCode.dayNumber)
                 && isMonthNumberCorrect(personalCode.monthNumber)
-                && isBirthDateCorrect(personalCode.yearNumber, personalCode.monthNumber, personalCode.dayNumber)
-                && checkControlNumber(idCode)) {
+                && isBirthDateCorrect(getFullYear(personalCode.genderNumber, personalCode.yearNumber), personalCode.monthNumber, personalCode.dayNumber)
+                && checkControlNumber(idCode)){
 
             System.out.println("ID is correct");
             return true;
@@ -85,56 +85,29 @@ public class IDCodeValidator {
         for (int i = 0; i < idCode.length(); i++) {
             String n = String.valueOf(idCode.charAt(i));
             a.add(Integer.parseInt(n));
-        }
-        List<Integer> x = new ArrayList<>();
-        x.add(1);
-        x.add(2);
-        x.add(3);
-        x.add(4);
-        x.add(5);
-        x.add(6);
-        x.add(7);
-        x.add(8);
-        x.add(9);
-        x.add(1);
-
-        List<Integer> k = new ArrayList<>();
-        k.add(3);
-        k.add(4);
-        k.add(5);
-        k.add(6);
-        k.add(7);
-        k.add(8);
-        k.add(9);
-        k.add(1);
-        k.add(2);
-        k.add(3);
 
 
-        for (int i = 0; i < a.size() - 1; i++) {
+            List<Integer> x = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 1);
             result = result + (a.get(i) * x.get(i));
+
+            int leftover = result % 11;
+
+
+            List<Integer> k = List.of(3, 4, 5, 6, 7, 8, 9, 1, 2, 3);
+
+            result = result + (a.get(i) * k.get(i));
+
         }
         int leftover = result % 11;
+        if ( leftover == a.get(a.size()-1)){
+            System.out.printf("Control number is correct", leftover,a.get(a.size()-1));
+            return true;
+        } else{
+            System.out.printf("Control number is not correct", leftover,a.get(a.size()-1));
+            return false;
 
-
-        if (leftover < 10 && result == idCode.length() - 1) {
-            System.out.println(result);
         }
-        if (leftover == 10) {
-            for (int i = 0; i < a.size() - 1; i++) {
-                int result1 = result + (a.get(i) * k.get(i));
-                System.out.println(result1);
 
-                if (result1 < 10 && result1 == idCode.length() - 1) {
-                    System.out.println(result1);
-                }
-                if (result1 == 10 && idCode.length() - 1 == 0) {
-                    System.out.println(result1);
-                }
-
-            }
-        }
-        return false;
     }
 
 
