@@ -169,24 +169,25 @@ public class IDCodeValidator {
 
     public static int getFullYear(int genderNumber, int yearNumber) {
         if (isYearCorrect(yearNumber)
-            && isGenderNumberCorrect(genderNumber)) {
-                return switch (genderNumber) {
-                    case 1, 2 -> 1800 + yearNumber;
-                    case 3, 4 -> 1900 + yearNumber;
-                    case 5, 6 -> 2000 + yearNumber;
-                    default -> throw new RuntimeException("Unknown gender");
-                };
+                && isGenderNumberCorrect(genderNumber)) {
+            return switch (genderNumber) {
+                case 1, 2 -> 1800 + yearNumber;
+                case 3, 4 -> 1900 + yearNumber;
+                case 5, 6 -> 2000 + yearNumber;
+                default -> throw new RuntimeException("Unknown gender");
+            };
 
-            }
+        }
 
         return genderNumber;
     }
 
-    public static boolean isYearCorrect (int yearNumber){
-        if ( yearNumber >=0 && yearNumber <=99){
+    public static boolean isYearCorrect(int yearNumber) {
+        if (yearNumber >= 0 && yearNumber <= 99) {
             System.out.println(yearNumber);
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 }
